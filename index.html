@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title><%= htmlWebpackPlugin.options.title %></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <div id="root"></div>
+  <script>
+    setTimeout(()=>{
+    let xmlhttp = new XMLHttpRequest();
+    let gurl = 'https://api.github.com/repos/fzf404/Tech_Note/commits';
+    xmlhttp.open("GET", gurl, true);
+    xmlhttp.send();
+    // 解析响应数据
+    xmlhttp.onreadystatechange = () =>{
+      let data = xmlhttp.responseText;
+      let jsonData = JSON.parse(data);
+      console.log(jsonData[0].commit.message);
+      document.getElementById('active').innerHTML=jsonData[0].commit.message;
+    }
+  },2000)
+  </script>
+</body>
+
+</html>
+
