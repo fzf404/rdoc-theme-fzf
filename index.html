@@ -20,7 +20,6 @@
     xmlhttp.onreadystatechange = () =>{
       let data = xmlhttp.responseText;
       let jsonData = JSON.parse(data);
-      console.log(jsonData[0].commit.message);
       document.getElementById('active').innerHTML=jsonData[0].commit.message;
     }
   },2000)
