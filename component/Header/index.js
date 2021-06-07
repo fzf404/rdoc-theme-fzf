@@ -13,6 +13,16 @@ const SVGGithub = (
 const isString = val => typeof val === 'string';
 
 export default class Header extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchKey: '',
+    };
+  }
+
+  created() {
+
+  }
   renderTopMenu(menuSource, pathname) {
     if (menuSource.length > 1) {
       menuSource = menuSource.sort((a, b) => {
@@ -54,7 +64,14 @@ export default class Header extends PureComponent {
   handleSearch = () => {
     fetch('/search.json')
       .then(response => response.json())
-      .then(res => console.log(res));
+      .then((res) => {
+        const key = this.state.searchKey.toLowerCase();
+        res.forEach((item) => {
+          if (item.toLowerCase().search(key) != -1) {
+            console.log(item);
+          }
+        });
+      });
   }
 
   render() {
@@ -66,7 +83,7 @@ export default class Header extends PureComponent {
           <Link to="/" replace> <div className={styles.logo}>{logo && <img alt="logo" src={logo} />}<span>{mdconf.title}</span></div> </Link>
           <div className={styles.search}>
             <input type="text" value={this.state.searchKey} onChange={this.handleInput} />
-            <button onClick={this.handleSearch}>Insert</button>
+            <button onClick={this.handleSearch}>搜索</button>
           </div>
           {menuSource && <div className={styles.menu}>{this.renderTopMenu(menuSource, pathname)}</div>}
           {children && children.map((item, index) => {

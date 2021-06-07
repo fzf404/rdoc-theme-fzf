@@ -10,20 +10,6 @@
 
 <body>
   <div id="root"></div>
-  <script>
-    setInterval(()=>{
-    let xmlhttp = new XMLHttpRequest();
-    let gurl = 'https://api.github.com/repos/fzf404/Tech_Note/commits';
-    xmlhttp.open("GET", gurl, true);
-    xmlhttp.send();
-    // 解析响应数据
-    xmlhttp.onreadystatechange = () =>{
-      let data = xmlhttp.responseText;
-      let jsonData = JSON.parse(data);
-      document.getElementById('active').innerHTML=jsonData[0].commit.message;
-    }
-  },2000)
-  </script>
 </body>
 
 </html>

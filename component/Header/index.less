@@ -81,7 +81,34 @@
 }
 
 .search {
-  display      : inline-block;
-  margin-left  : 30px;
-  margin-bottom: 15px;
+  vertical-align: middle;
+  display       : inline-block;
+  margin-left   : 160px;
+
+
+  input,
+  button {
+    border : none;
+    outline: none;
+  }
+
+  input {
+    height       : 32px;
+    border       : 2px solid #7BA7AB;
+    border-radius: 5px;
+  }
+
+  button {
+    margin-left  : 20px;
+    color        : white;
+    height       : 33px;
+    width        : 52px;
+    background   : #7BA7AB;
+    border-radius: 5px;
+  }
+
+  button:before {
+    font-family: FontAwesome;
+    font-size  : 16px;
+  }
 }

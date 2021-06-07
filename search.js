@@ -3,8 +3,7 @@ const fs = require('fs');
 const pathName = '.cache/md';
 const jsonPath = '.rdoc-dist/search.json';
 
-function readFileList(dir) {
-  let filesList = [];
+function readFileList(dir, filesList = []) {
   const files = fs.readdirSync(dir);
   files.forEach((item) => {
     if (item.endsWith('.md')) {
