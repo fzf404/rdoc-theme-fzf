@@ -44,6 +44,19 @@ export default class Header extends PureComponent {
       );
     });
   }
+
+  handleInput = (event) => {
+    this.setState({
+      searchKey: event.target.value,
+    });
+  }
+
+  handleSearch = () => {
+    fetch('/search.json')
+      .then(response => response.json())
+      .then(res => console.log(res));
+  }
+
   render() {
     const { location: { pathname }, menuSource, className, children, logo } = this.props;
     const { mdconf } = this.props.indexProps || {};
@@ -51,6 +64,10 @@ export default class Header extends PureComponent {
       <div className={classNames('header', styles.header, className)}>
         <div className={styles.wapper}>
           <Link to="/" replace> <div className={styles.logo}>{logo && <img alt="logo" src={logo} />}<span>{mdconf.title}</span></div> </Link>
+          <div className={styles.search}>
+            <input type="text" value={this.state.searchKey} onChange={this.handleInput} />
+            <button onClick={this.handleSearch}>Insert</button>
+          </div>
           {menuSource && <div className={styles.menu}>{this.renderTopMenu(menuSource, pathname)}</div>}
           {children && children.map((item, index) => {
             if (isString(item)) return item;
