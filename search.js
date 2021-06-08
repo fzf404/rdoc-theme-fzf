@@ -7,7 +7,7 @@ function readFileList(dir, filesList = []) {
   const files = fs.readdirSync(dir);
   files.forEach((item) => {
     if (item.endsWith('.md')) {
-      filesList.push(`/#/${item.replace(/___/g, '/').replace('.md', '/')}`);
+      filesList.push(`/#/${item.replace(/___/g, '/').replace('.md', '')}`);
     }
   });
   return filesList;

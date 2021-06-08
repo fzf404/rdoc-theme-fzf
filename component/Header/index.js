@@ -16,13 +16,23 @@ export default class Header extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      searchKey: '',
+      showResult: false,
+      fileList: [],
+      searchList: [(
+        <div>什么都未找到哦~</div>
+      )],
     };
   }
 
-  created() {
-
+  // 挂载索引数据库
+  componentWillMount() {
+    fetch('/search.json')
+      .then(res => res.json())
+      .then((data) => {
+        this.setState({ fileList: data });
+      });
   }
+
   renderTopMenu(menuSource, pathname) {
     if (menuSource.length > 1) {
       menuSource = menuSource.sort((a, b) => {
@@ -54,25 +64,34 @@ export default class Header extends PureComponent {
       );
     });
   }
-
-  handleInput = (event) => {
-    this.setState({
-      searchKey: event.target.value,
+  // 进行搜索
+  handleSearchInput = (event) => {
+    const searchKey = event.target.value.toLowerCase();
+    const fileList = this.state.fileList;
+    let searchList = [];
+    fileList.forEach((item) => {
+      if (item.toLowerCase().search(searchKey) !== -1) {
+        searchList.push(
+          <div>
+            <a href={item}>{item}</a>
+          </div>
+        );
+      }
     });
+    searchList = searchList.length === 0 ? [(<div>什么都未找到哦~</div>)] : searchList.splice(0, 10);
+    this.setState({ searchList });
+  }
+  // 展示结果栏
+  handleSearchFocus = () => {
+    this.setState({ showResult: true });
+  }
+  // 关闭结果栏
+  handleSearchBlur = () => {
+    setTimeout(() =>
+      this.setState({ showResult: false })
+      , 500);
   }
 
-  handleSearch = () => {
-    fetch('/search.json')
-      .then(response => response.json())
-      .then((res) => {
-        const key = this.state.searchKey.toLowerCase();
-        res.forEach((item) => {
-          if (item.toLowerCase().search(key) != -1) {
-            console.log(item);
-          }
-        });
-      });
-  }
 
   render() {
     const { location: { pathname }, menuSource, className, children, logo } = this.props;
@@ -81,17 +100,26 @@ export default class Header extends PureComponent {
       <div className={classNames('header', styles.header, className)}>
         <div className={styles.wapper}>
           <Link to="/" replace> <div className={styles.logo}>{logo && <img alt="logo" src={logo} />}<span>{mdconf.title}</span></div> </Link>
-          <div className={styles.search}>
-            <input type="text" value={this.state.searchKey} onChange={this.handleInput} />
-            <button onClick={this.handleSearch}>搜索</button>
-          </div>
-          {menuSource && <div className={styles.menu}>{this.renderTopMenu(menuSource, pathname)}</div>}
+          {menuSource &&
+            <div className={styles.menu}>
+              <input type="text" placeholder="搜索" onChange={this.handleSearchInput} onFocus={this.handleSearchFocus} onBlur={this.handleSearchBlur} />
+              {this.renderTopMenu(menuSource, pathname)}
+            </div>
+          }
+
           {children && children.map((item, index) => {
             if (isString(item)) return item;
             return React.cloneElement(item, { key: index });
           })}
+
         </div>
-      </div>
+
+        {this.state.showResult ?
+          <div className={styles.wrapDropDown}>
+            {this.state.searchList}
+          </div> : null}
+
+      </div >
     );
   }
 }
