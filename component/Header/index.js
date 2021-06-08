@@ -89,7 +89,7 @@ export default class Header extends PureComponent {
   handleSearchBlur = () => {
     setTimeout(() =>
       this.setState({ showResult: false })
-      , 500);
+      , 200);
   }
 
 
