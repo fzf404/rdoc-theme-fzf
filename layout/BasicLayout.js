@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import styles from './BasicLayout.less';
 import Header from '../component/Header';
 import Footer from '../component/Footer';
-import logo from '../rdoc.logo.svg';
+import logo from '../logo.svg';
 
 function getCurrentArticle(routeData, path) {
   let article = null;
