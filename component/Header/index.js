@@ -68,16 +68,13 @@ export default class Header extends PureComponent {
   handleSearchInput = (event) => {
     const searchKey = event.target.value.toLowerCase();
     const fileList = this.state.fileList;
-    let searchList = [];
-    fileList.forEach((item) => {
-      if (item.toLowerCase().search(searchKey) !== -1) {
-        searchList.push(
-          <div>
-            <a href={item}>{item}</a>
-          </div>
-        );
-      }
-    });
+    const resultList = fileList.filter(item => item.toLowerCase().search(searchKey) !== -1);
+
+    let searchList = resultList.map(item => (
+      <div>
+        <a href={item}>{item}</a>
+      </div>)
+    );
     searchList = searchList.length === 0 ? [(<div>什么都未找到哦~</div>)] : searchList.splice(0, 10);
     this.setState({ searchList });
   }
