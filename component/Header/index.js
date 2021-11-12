@@ -84,9 +84,10 @@ export default class Header extends PureComponent {
   }
   // 关闭结果栏
   handleSearchBlur = () => {
+    // 延时300ms关闭
     setTimeout(() =>
       this.setState({ showResult: false })
-      , 200);
+      , 300);
   }
 
 

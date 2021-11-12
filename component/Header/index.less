@@ -79,19 +79,31 @@
     }
   }
 
+  // 搜索框
   input {
     outline: none;
 
     height: 30px;
-    width : 200px;
+    width: 12vw;
 
-    margin-right: 50px;
+    margin-right: 42px;
 
     border       : 2px solid #7BA7AB;
     border-radius: 5px;
 
     text-indent: 5px;
     box-sizing : border-box;
+  }
+  // 移动端适配
+  @media only screen and (max-width:1100px) {
+    input {
+      margin-right: 2vw;
+    }
+  }
+  @media only screen and (max-width:900px) {
+    input {
+      display: none;
+    }
   }
 
 }
