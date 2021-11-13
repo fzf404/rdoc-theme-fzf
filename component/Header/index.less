@@ -17,16 +17,17 @@
 }
 
 .header {
-  box-shadow      : 0 2px 8px #f0f1f2;
-  background-color: #f9f9f9;
-  border-bottom   : 1px solid #d8d7d7;
-  line-height     : 54px;
-  min-height      : 54px;
-  position        : relative;
-  position        : fixed;
-  width           : 100%;
-  top             : 0;
-  z-index         : 9;
+  box-shadow         : 0 2px 8px #f0f1f2;
+  background-color   : #f9f9f9;
+  border-bottom      : 1px solid #d8d7d7;
+  line-height        : 54px;
+  min-height         : 54px;
+  position           : relative;
+  // 取消固定
+  // position        : fixed;
+  width              : 100%;
+  top                : 0;
+  z-index            : 9;
 
   .wapper {
     max-width: 1200px;
@@ -84,9 +85,9 @@
     outline: none;
 
     height: 30px;
-    width: 12vw;
+    width : 12vw;
 
-    margin-right: 42px;
+    margin-right: 2vw;
 
     border       : 2px solid #7BA7AB;
     border-radius: 5px;
@@ -94,16 +95,16 @@
     text-indent: 5px;
     box-sizing : border-box;
   }
+
   // 移动端适配
-  @media only screen and (max-width:1100px) {
-    input {
-      margin-right: 2vw;
-    }
-  }
   @media only screen and (max-width:900px) {
     input {
       display: none;
     }
+  }
+
+  @media only screen and (max-width:800px) {
+    display: none;
   }
 
 }

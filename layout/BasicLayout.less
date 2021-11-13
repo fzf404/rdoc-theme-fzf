@@ -2,46 +2,72 @@
   &::after {
     content: '';
     display: block;
-    clear: both;
+    clear  : both;
   }
+
+    // 滚动条样式
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-thumb,::-webkit-scrollbar-track {
+      border-radius: 8px;
+    }
+    // 滑块
+    ::-webkit-scrollbar-thumb {
+      background   : rgba(0,0,0, 0.06);
+    }
+    // 导轨
+    ::-webkit-scrollbar-track {
+      background   : rgba(0,0,0, 0.04);
+    }
 }
 
 .wapperContent {
-  padding: 75px 0 0 0;
+  padding  : 12px 0 0 0;
   max-width: 1200px;
-  margin: 0px auto 0;
+  margin   : 0px auto 0;
 }
 
 // 侧边目录栏
 .menuWapper {
+  // 固定
+  position: fixed;
+  top     : 70px;
   // 滚动
   overflow: scroll;
-  // 最大宽度
-  max-height: 80vh;
+  // 高度
+  height  : 80vh;
+
   // 移动端适配
   @media only screen and (max-width:900px) {
     width: 180px;
   }
 
-  width: 220px;
-  float: left;
+  width    : 220px;
+  float    : left;
   font-size: 14px;
-  color: #6d6d6d;
+  color    : #6d6d6d;
+
   ul li {
     list-style: none;
   }
+
   ul ul {
     padding: 0 0 0 0;
   }
+
   li {
-    padding: 0 0 0 21px;
+    padding    : 0 0 0 21px;
     line-height: 40px;
   }
+
   li li {
     padding: 0 0 0 16px;
   }
+
   :global {
-    .active a{
+    .active a {
       color: #1890ff;
     }
   }
@@ -50,14 +76,16 @@
 // 内容样式
 .content {
   // 最小宽度
-  min-width: 600px;
+  min-width: 460px;
+
   // 移动端适配
   @media only screen and (max-width:900px) {
     margin-left: 180px;
   }
+
   margin-left: 220px;
   border-left: 1px solid #e9e9e9;
-  min-height: 300px;
+  min-height : 300px;
 }
 
 .contentNoMenu {
