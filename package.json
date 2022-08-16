@@ -1,14 +1,14 @@
 {
   "name": "rdoc-theme-fzf",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.2.0",
+  "description": "rdoc theme for note.fzf404.art",
   "main": "index.js",
-  "directories": {
-    "lib": "lib"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "BABEL_ENV=production babel --ignore=src/**/__test__ --plugins transform-runtime src --out-dir lib --copy-files "
   },
-  "author": "",
-  "license": "ISC"
+  "keywords": [
+    "rdoc"
+  ],
+  "author": "fzf404",
+  "license": "MIT"
 }
