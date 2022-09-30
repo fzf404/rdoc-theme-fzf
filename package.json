@@ -1,11 +1,8 @@
 {
   "name": "rdoc-theme-fzf",
   "version": "1.2.1",
-  "description": "rdoc theme for note.fzf404.art",
+  "description": "A rdoc theme for note.fzf404.art",
   "main": "index.js",
-  "scripts": {
-    "build": "BABEL_ENV=production babel --ignore=src/**/__test__ --plugins transform-runtime src --out-dir lib --copy-files "
-  },
   "keywords": [
     "rdoc"
   ],
