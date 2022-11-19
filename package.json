@@ -1,11 +1,11 @@
 {
   "name": "rdoc-theme-fzf",
-  "version": "1.3.0",
-  "description": "A rdoc theme for note.fzf404.art",
-  "main": "index.js",
-  "keywords": [
-    "rdoc"
-  ],
+  "version": "1.3.1",
+  "description": "Rdoc theme for note.fzf404.art",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fzf404/rdoc-theme-fzf"
+  },
   "author": "fzf404",
-  "license": "MIT"
+  "main": "index.js"
 }
